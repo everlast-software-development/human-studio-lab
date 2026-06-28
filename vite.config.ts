@@ -7,9 +7,12 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Switch from Cloudflare Workers to a standalone Node.js server for Railway deployment.
+  // Nitro outputs to .output/server/index.mjs — started via railway.json startCommand.
+  nitro: {
+    preset: "node-server",
+  },
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
   },
 });
